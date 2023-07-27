@@ -3,10 +3,21 @@ package com.educandoweb.ProjetoSpringBoot.entites;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+
+@Entity //informando que é uma entidade
+@Table(name = "tb_user") //passando o nome no banco de dados
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id //passando id pois ele é a chave primario no banco de dados
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // é um auto incremento
 	private Long id;
 	private String name;
 	private String email;
