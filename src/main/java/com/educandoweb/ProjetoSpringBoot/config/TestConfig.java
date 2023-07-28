@@ -8,9 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.educandoweb.ProjetoSpringBoot.entites.Category;
 import com.educandoweb.ProjetoSpringBoot.entites.Order;
 import com.educandoweb.ProjetoSpringBoot.entites.User;
 import com.educandoweb.ProjetoSpringBoot.entites.enums.OrderStatus;
+import com.educandoweb.ProjetoSpringBoot.repositories.CategoryRepository;
 import com.educandoweb.ProjetoSpringBoot.repositories.OrderRepository;
 import com.educandoweb.ProjetoSpringBoot.repositories.UserRepository;
 
@@ -24,6 +26,9 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private OrderRepository orderRepository;
 
+	@Autowired
+	private CategoryRepository categoryRepository;
+
 	// TUDO O QUE FOR COLOCADO DENTRO DESSE METADO SERÁ EXECUTADO QUANDO A APLICAÇÃO
 	// FOR INICIADA
 	@Override
@@ -35,8 +40,13 @@ public class TestConfig implements CommandLineRunner {
 		Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.PAID, u2);
 		Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.CANCELED, u1);
 
+		Category cat1 = new Category(null, "Electronics");
+		Category cat2 = new Category(null, "Books");
+		Category cat3 = new Category(null, "Computers");
+
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 	}
 
 }
