@@ -13,7 +13,7 @@ import com.educandoweb.ProjetoSpringBoot.entites.Category;
 import com.educandoweb.ProjetoSpringBoot.services.CategoryService;
 
 @RestController // informando que é uma controller
-@RequestMapping("/categories") // passando o caminho na url
+@RequestMapping(value = "/categories") // passando o caminho na url
 public class CategoryResource {
 
 	@Autowired
@@ -26,9 +26,9 @@ public class CategoryResource {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Category> findById(@PathVariable Long id) {
+	public ResponseEntity<Category> findById(@PathVariable Long id){
 		Category obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
-
+	
 }

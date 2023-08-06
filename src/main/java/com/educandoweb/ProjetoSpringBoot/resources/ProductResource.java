@@ -13,7 +13,7 @@ import com.educandoweb.ProjetoSpringBoot.entites.Product;
 import com.educandoweb.ProjetoSpringBoot.services.ProductService;
 
 @RestController // informando que é uma controller
-@RequestMapping("/products") // passando o caminho na url
+@RequestMapping(value = "/products") // passando o caminho na url
 public class ProductResource {
 
 	@Autowired

@@ -13,7 +13,7 @@ import com.educandoweb.ProjetoSpringBoot.entites.User;
 import com.educandoweb.ProjetoSpringBoot.services.UserService;
 
 @RestController // informando que é uma controller
-@RequestMapping("/users") // passando o caminho na url
+@RequestMapping(value = "/users") // passando o caminho na url
 public class UserResource {
 
 	@Autowired

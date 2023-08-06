@@ -37,6 +37,7 @@ public class Order implements Serializable {
 	@JoinColumn(name = "client_id") // nome da chave estrangeira
 	private User client;
 
+	//SÃO ITENS DO PEDIDO
 	@OneToMany(mappedBy = "id.order")
 	private Set<OrderItem> items = new HashSet<>();
 
@@ -84,7 +85,8 @@ public class Order implements Serializable {
 		this.client = client;
 	}
 
-	public Set<OrderItem> getItems() {
+	// GET ORDERITEM
+	public Set<OrderItem> getItem() {
 		return items;
 	}
 

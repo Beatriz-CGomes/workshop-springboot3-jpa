@@ -33,6 +33,7 @@ public class OrderItem implements Serializable {
 	}
 
 	@JsonIgnore
+	// GET E SETTER DO ORDER E PRODUCT
 	public Order getOrder() {
 		return id.getOrder();
 	}
@@ -49,6 +50,7 @@ public class OrderItem implements Serializable {
 		id.setProduct(product);
 	}
 
+	// QUANTITY E PRICE
 	public Integer getQuantity() {
 		return quantity;
 	}

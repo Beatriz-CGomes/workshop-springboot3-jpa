@@ -10,16 +10,15 @@ import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-//CLASSE AUXILIAR DE CHAVE PRIMARIA COMPOSTA 
 @Embeddable
 public class OrderItemPK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
@@ -45,6 +44,7 @@ public class OrderItemPK implements Serializable {
 		return Objects.hash(order, product);
 	}
 
+	// PEDIDO E PRODUTO QUE INDETIFICAM UM ITEM
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
