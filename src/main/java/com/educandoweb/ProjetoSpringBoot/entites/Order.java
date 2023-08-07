@@ -43,7 +43,8 @@ public class Order implements Serializable {
 	@OneToMany(mappedBy = "id.order")
 	private Set<OrderItem> items = new HashSet<>();
 
-	//CASCADETYPE.ALL = ESTAMOS MAPEANDO PARA QUE O PAGAMENTO TENHA O MESMO CODIGO DE IDENTICAÇÃOQ QUE O PEDIDO
+	// CASCADETYPE.ALL = ESTAMOS MAPEANDO PARA QUE O PAGAMENTO TENHA O MESMO CODIGO
+	// DE IDENTICAÇÃOQ QUE O PEDIDO
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
 	private Payment payment;
 
@@ -92,11 +93,11 @@ public class Order implements Serializable {
 	}
 
 	// GET ORDERITEM
-	public Set<OrderItem> getItem() {
+	public Set<OrderItem> getItems() {
 		return items;
 	}
-   
-	//GET E SETTER DE PAYMENT
+
+	// GET E SETTER DE PAYMENT
 	public Payment getPayment() {
 		return payment;
 	}
@@ -108,6 +109,16 @@ public class Order implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+
+	// METADO TOTAL DOS PEDIDO
+	public Double getTotal() {
+		double sum = 0.0;
+		for (OrderItem x : items) {
+			sum += x.getSubTotal();
+		}
+
+		return sum;
 	}
 
 	@Override
