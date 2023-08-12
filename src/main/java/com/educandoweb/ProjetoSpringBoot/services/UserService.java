@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.educandoweb.ProjetoSpringBoot.entites.User;
 import com.educandoweb.ProjetoSpringBoot.repositories.UserRepository;
+import com.educandoweb.ProjetoSpringBoot.services.exceptions.DatabaseException;
 import com.educandoweb.ProjetoSpringBoot.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -24,7 +27,6 @@ public class UserService {
 		Optional<User> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
-	
 
 	// RETORNAR O USUARIO SALVO
 	public User insert(User obj) {
@@ -33,7 +35,13 @@ public class UserService {
 
 	// DELETAR USUARIO
 	public void delete(Long id) {
-		repository.deleteById(id);
+		try {
+			repository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DatabaseException(e.getMessage());
+		}
 	}
 
 	// ATUALIZAR USUARIO
